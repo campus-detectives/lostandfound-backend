@@ -14,6 +14,7 @@ func (app *application) routes() *httprouter.Router {
 
 	router.HandlerFunc("GET", "/v1/status", app.statusHandler)
 	router.HandlerFunc(http.MethodPost, "/v1/users", app.registerUserHandler)
+	router.HandlerFunc(http.MethodPost, "/v1/tokens/authentication", app.createAuthenticationTokenHandler)
 
 	return router
 }

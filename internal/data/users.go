@@ -40,8 +40,8 @@ func (p *password) Set(plaintext string) error {
 	return nil
 }
 
-func (p *password) Matches() (bool, error) {
-	err := bcrypt.CompareHashAndPassword(p.hash, []byte(*p.plaintext))
+func (p *password) Matches(plaintextPassword string) (bool, error) {
+	err := bcrypt.CompareHashAndPassword(p.hash, []byte(plaintextPassword))
 	if err != nil {
 		switch {
 		case errors.Is(err, bcrypt.ErrMismatchedHashAndPassword):
@@ -51,7 +51,6 @@ func (p *password) Matches() (bool, error) {
 		}
 	}
 	return true, nil
-
 }
 
 func ValidateUsername(v *validator.Validator, username string) {

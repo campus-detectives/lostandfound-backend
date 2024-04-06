@@ -18,9 +18,9 @@ const (
 type Token struct {
 	Plaintext string    `json:"-"`
 	Hash      []byte    `json:"-"`
-	UserID    int64     `json:"user_id"`
+	UserID    int64     `json:"-"`
 	Expiry    time.Time `json:"expiry"`
-	Scope     string    `json:"scope"`
+	Scope     string    `json:"-"`
 }
 
 func generateToken(userID int64, ttl time.Duration, scope string) (*Token, error) {
