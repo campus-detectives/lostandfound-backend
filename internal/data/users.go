@@ -6,7 +6,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/amal064/lostandfound-backend/internal/validator"
+	"github.com/campus-detectives/lostandfound-backend/internal/validator"
 	"golang.org/x/crypto/bcrypt"
 )
 
