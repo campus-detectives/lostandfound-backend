@@ -7,6 +7,10 @@ This repository contains the backend for a Lost and Found application.
 To run the API, make sure you have [Go](https://go.dev) installed and then use the following command:
 
 ```bash
+go run ./cmd/api
+```
+or
+```bash
 make run/api
 ```
 
