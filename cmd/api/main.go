@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/campus-detectives/lostandfound-backend/internal/data"
 	_ "github.com/joho/godotenv/autoload"
 	_ "github.com/lib/pq"
 
@@ -24,6 +25,7 @@ type config struct {
 
 type application struct {
 	logger *log.Logger
+	models data.Models
 }
 
 const AppPrefix = "LAF"
@@ -37,18 +39,17 @@ func main() {
 
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
-	app := application{
-		logger,
-	}
-
-	_ = app.routes()
-
 	db, err := openDB(cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 	log.Printf("database connection established")
+
+	app := application{
+		logger: logger,
+		models: data.NewModels(db),
+	}
 
 	srv := &http.Server{
 		Addr: cfg.HttpAddr, Handler: app.routes(),
