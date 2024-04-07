@@ -23,7 +23,6 @@ func (u *User) IsAnonymous() bool {
 type User struct {
 	ID        int64     `json:"id"`
 	CreatedAt time.Time `json:"created_at"`
-	Name      string    `json:"name"`
 	Username  string    `json:"username"`
 	Password  password  `json:"-"`
 	Version   int       `json:"-"`
@@ -74,9 +73,7 @@ func ValidatePasswordPlaintext(v *validator.Validator, password string) {
 }
 
 func ValidateUser(v *validator.Validator, user *User) {
-	v.Check(user.Name != "", "name", "must be provided")
-	v.Check(len(user.Name) >= 3, "username", "must be at least 3 characters long")
-	v.Check(len(user.Name) <= 30, "name", "must not be more than 500 bytes long")
+	ValidateUsername(v, *&user.Username)
 
 	if user.Password.plaintext != nil {
 		ValidatePasswordPlaintext(v, *user.Password.plaintext)
@@ -93,11 +90,11 @@ type UserModel struct {
 
 func (m UserModel) Insert(user *User) error {
 	query := `
-	INSERT INTO users (name, username, password_hash) 
-	VALUES ($1, $2, $3)
+	INSERT INTO users ( username, password_hash) 
+	VALUES ($1, $2)
 	RETURNING id, created_at, version, is_guard`
 
-	args := []interface{}{user.Name, user.Username, user.Password.hash}
+	args := []interface{}{user.Username, user.Password.hash}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -105,7 +102,7 @@ func (m UserModel) Insert(user *User) error {
 	err := m.DB.QueryRowContext(ctx, query, args...).Scan(&user.ID, &user.CreatedAt, &user.Version, &user.IsGuard)
 	if err != nil {
 		switch {
-		case err.Error() == `pq: duplicate key value violates unique constraint "users_email_key"`:
+		case err.Error() == `pq: duplicate key value violates unique constraint "users_username_key"`:
 			return ErrDuplicateUsername
 		default:
 			return err
@@ -116,7 +113,7 @@ func (m UserModel) Insert(user *User) error {
 
 func (m UserModel) GetByUsername(username string) (*User, error) {
 	query := `
-		SELECT id, created_at, name, username, password_hash, version 
+		SELECT id, created_at, username, password_hash, version, is_guard 
 		FROM users
 		WHERE username = $1`
 
@@ -126,7 +123,7 @@ func (m UserModel) GetByUsername(username string) (*User, error) {
 	defer cancel()
 
 	err := m.DB.QueryRowContext(ctx, query, username).Scan(&user.ID,
-		&user.CreatedAt, &user.Name, &user.Username, &user.Password.hash, &user.Version, &user.IsGuard,
+		&user.CreatedAt, &user.Username, &user.Password.hash, &user.Version, &user.IsGuard,
 	)
 	if err != nil {
 		switch {
@@ -142,11 +139,11 @@ func (m UserModel) GetByUsername(username string) (*User, error) {
 func (m UserModel) Update(user *User) error {
 	query := `
 		UPDATE users
-		SET name = $1, username = $2, password_hash = $3, version = version + 1 
-		WHERE id = $4 AND version = $5
+		SET username = $1, password_hash = $2, version = version + 1 
+		WHERE id = $3 AND version = $4
 		RETURNING version`
 
-	args := []interface{}{user.Name, user.Username, user.Password.hash, user.ID, user.Version}
+	args := []interface{}{user.Username, user.Password.hash, user.ID, user.Version}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()

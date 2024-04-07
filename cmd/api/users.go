@@ -10,7 +10,6 @@ import (
 
 func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Request) {
 	var input struct {
-		Name     string `json:"name"`
 		Username string `json:"username"`
 		Password string `json:"password"`
 	}
@@ -21,7 +20,6 @@ func (app *application) registerUserHandler(w http.ResponseWriter, r *http.Reque
 		return
 	}
 	user := &data.User{
-		Name:     input.Name,
 		Username: input.Username,
 	}
 

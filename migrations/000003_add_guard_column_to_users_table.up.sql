@@ -1,3 +1,2 @@
-ALTER TABLE users(
-    is_guard bool NOT NULL DEFAULT false,
-)
+ALTER TABLE users ADD COLUMN 
+    is_guard bool NOT NULL DEFAULT false;
