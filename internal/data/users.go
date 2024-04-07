@@ -27,6 +27,7 @@ type User struct {
 	Username  string    `json:"username"`
 	Password  password  `json:"-"`
 	Version   int       `json:"-"`
+	IsGuard   bool      `json:"is_guard"`
 }
 
 type password struct {
@@ -94,14 +95,14 @@ func (m UserModel) Insert(user *User) error {
 	query := `
 	INSERT INTO users (name, username, password_hash) 
 	VALUES ($1, $2, $3)
-	RETURNING id, created_at, version`
+	RETURNING id, created_at, version, is_guard`
 
 	args := []interface{}{user.Name, user.Username, user.Password.hash}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	err := m.DB.QueryRowContext(ctx, query, args...).Scan(&user.ID, &user.CreatedAt, &user.Version)
+	err := m.DB.QueryRowContext(ctx, query, args...).Scan(&user.ID, &user.CreatedAt, &user.Version, &user.IsGuard)
 	if err != nil {
 		switch {
 		case err.Error() == `pq: duplicate key value violates unique constraint "users_email_key"`:
@@ -125,7 +126,7 @@ func (m UserModel) GetByUsername(username string) (*User, error) {
 	defer cancel()
 
 	err := m.DB.QueryRowContext(ctx, query, username).Scan(&user.ID,
-		&user.CreatedAt, &user.Name, &user.Username, &user.Password.hash, &user.Version,
+		&user.CreatedAt, &user.Name, &user.Username, &user.Password.hash, &user.Version, &user.IsGuard,
 	)
 	if err != nil {
 		switch {
