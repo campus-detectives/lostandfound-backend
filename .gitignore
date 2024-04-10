@@ -1,1 +1,7 @@
 .env
+scripts/
+logs_upload.log
+encoder.pt
+logs_comparator.log
+traced_model.pt
+traced_model_vit_direct.pt
