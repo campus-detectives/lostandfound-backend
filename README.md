@@ -110,6 +110,15 @@ LAF_HTTP_ADDR=localhost:8000
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Screenshots
+- Home <br>
+   <img src="images/screenshot_unclaimed.jpeg" alt="unclaimed items" height="600"/>
+   <img src="images/screenshot_claimed.jpeg" alt="claimed items" height="600"/>
+- Filter <br>
+   <img src="images/screenshot_filter.jpeg" alt="filter" height="600"/>
+- Result <br>
+   <img src="images/screenshot_result.jpeg" alt="filter" height="600"/>
+- Contest Claim <br>
+   <img src="images/screenshot_contest_claim.jpeg" alt="filter" height="600"/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
