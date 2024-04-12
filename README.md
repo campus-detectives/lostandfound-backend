@@ -114,10 +114,10 @@ LAF_HTTP_ADDR=localhost:8000
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Team
-- Heet Jhaveri - [Linkedin](https://twitter.com/twitter_handle) 
-- Snehil Chatterjee - [Linkedin](https://twitter.com/twitter_handle) 
-- Amal Bangari - [Linkedin](https://twitter.com/twitter_handle) 
-- Vallari Ashar - [Linkedin](https://twitter.com/twitter_handle) 
-- Sarthak Bansal - [Linkedin](https://twitter.com/twitter_handle) 
+- Heet Jhaveri - [Linkedin](https://www.linkedin.com/in/heet-jhaveri-873a90269/) 
+- Snehil Chatterjee - [Linkedin](https://www.linkedin.com/in/snehilchatterjee/) 
+- Amal Bangari - [Linkedin](https://www.linkedin.com/in/amal-bangari-692b29277/) 
+- Vallari Ashar - [Linkedin](https://www.linkedin.com/in/vallari-ashar-500166249/) 
+- Sarthak Bansal - [Linkedin](https://www.linkedin.com/in/sarthakbansal674/) 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
