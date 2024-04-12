@@ -110,15 +110,43 @@ LAF_HTTP_ADDR=localhost:8000
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Screenshots
-- Home <br>
-   <img src="images/screenshot_unclaimed.jpeg" alt="unclaimed items" height="600"/>
-   <img src="images/screenshot_claimed.jpeg" alt="claimed items" height="600"/>
-- Filter <br>
-   <img src="images/screenshot_filter.jpeg" alt="filter" height="600"/>
-- Result <br>
-   <img src="images/screenshot_result.jpeg" alt="filter" height="600"/>
-- Contest Claim <br>
-   <img src="images/screenshot_contest_claim.jpeg" alt="filter" height="600"/>
+
+**Student Side**
+<table>
+  <tr>
+    <td>
+      <img src="images/screenshot_unclaimed.jpeg" alt="unclaimed items" height="400"/>
+    </td>
+    <td>
+      <img src="images/screenshot_filter.jpeg" alt="filter" height="400"/>
+    </td>
+    <td>
+      <img src="images/screenshot_result.jpeg" alt="filter" height="400"/>
+    </td>
+    <td>
+      <img src="images/screenshot_contest_claim.jpeg" alt="filter" height="400"/>
+    </td>
+  </tr>
+</table>
+
+**Authority Side**
+<table>
+  <tr>
+    <td>
+      <img src="images/guard_home.jpeg" alt="unclaimed items" height="400"/>
+    </td>
+    <td>
+      <img src="images/guard_submit.jpeg" alt="filter" height="400"/>
+    </td>
+    <td>
+      <img src="images/guard_image.jpeg" alt="filter" height="400"/>
+    </td>
+    <td>
+      <img src="images/guard_claim.jpeg" alt="filter" height="400"/>
+    </td>
+  </tr>
+</table>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
