@@ -52,6 +52,18 @@ The process of handling lost items has traditionally relied on manual lists main
    - VITrace tracks ownership information associated with claimed items to resolve any conflicts that may arise if multiple users claim the same item.
 
 
+##
+
+**Authority Side Workflow**
+
+   <img src="./images/auth.jpeg">
+
+**Student Side Workflow**
+
+   <img src="./images/Student.jpeg">
+
+
+
 ## Getting Started
 ### Prerequisites
 
